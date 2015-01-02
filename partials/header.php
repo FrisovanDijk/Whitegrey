@@ -1,6 +1,7 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
 <head>
+  <!-- AnchorCMS theme by Friso van Dijk [ www.frisovandijk.com ] -->
   <meta charset="utf-8"/>
   <title><?php echo page_title('Page can’t be found'); ?> - <?php echo site_name(); ?></title>
 
@@ -54,5 +55,5 @@
       </div>
 
       <?php echo site_meta('sidebar'); ?>
-    <div class="footer">Theme by <a href="http://www.frisovandijk.com" target="_blank">Friso van Dijk</a></div>
+    <div class="footer">Theme by <a href="http://www.frisovandijk.com" target="_blank">Friso van Dijk</a></div> <!-- Created by piece -->
   </div> <!-- close sidebar -->
