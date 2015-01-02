@@ -2,4 +2,4 @@ Theme name:    WhiteGrey
 Description:   A theme with a darkgrey sidebar and a white content area. Has 1 theme color that is prevalent in links and titles.
 Author name:   Friso van Dijk
 Author site:   http://frisovandijk.com
-License:       MIT - license.txt
+License:       http://frisovandijk.com/public/MIT-LICENSE.txt
