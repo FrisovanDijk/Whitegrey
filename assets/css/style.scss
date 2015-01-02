@@ -1,0 +1,405 @@
+/**
+ * Style document for whitegrey AnchorCMS theme
+ * Author: Friso van Dijk
+ * Site: www.frisovandijk.com
+ */
+
+// __________________________________________
+//               Variables
+// ==========================================
+
+// ==========  Colors ===============
+/*
+  There's 4 colors here, of which you should edit only 2 most of the time (feel free to do the rest of course).
+  $themecolor This sets the themecolor. This is the only color used throughout the whole theme.
+  $blackgrey  This is the darkgrey color for the sidebar and when hovering over the links.
+  $contrast-text This is the text color of the sidebar. Change when you change $blackgrey
+
+  $theme-link This color is automatically generated based off the theme color. It's a bit darker, but that's about it.
+    If you decide to edit this, you will have to edit 2 colors to change the overall look.
+*/
+$themecolor: #BED321; // <--- EDIT THIS HEX FOR A DIFFERENT COLOR!
+
+$theme-link: adjust_hue(desaturate(darken($themecolor, 9), 4), 0);
+$blackgrey: #262324;
+$contrast-text: #ffffff;
+
+// ========== Screen Size ===========
+$screen-sm: 830px;    // Screen size on which content collapses. DONT EDIT! It's closely related to grid.css and will break the theme.
+
+// __________________________________________
+//              General Layout
+// ==========================================
+body {
+  font-family: 'Lato', sans-serif;  // Font mostly used in the sidebar
+  font-size: 14px;
+  margin: 0;
+}
+
+// This is only used in the sidebar. If you want to give an element the `theme color`, then put it in:
+// <span class="theme-color-text"> YOUR TEXT HERE </span>
+.theme-color-text {
+  color: $themecolor;
+}
+
+// Styling the links
+a:link, a:visited, a:active {
+  text-decoration: none;
+  color: $theme-link;
+}
+
+a:hover, a:focus {
+  color: $blackgrey;
+}
+
+// __________________________________________
+//                 Menu
+// ==========================================
+.menu {
+  list-style-type: none;  // Remove the bullets.
+  width: 100%;            // Give the items a maximum width.
+  padding: 0;             // Reset menu padding (for centering).
+  margin: 5px auto;       // Center the list items.
+  text-align: center;     // Center the text.
+
+  // Give the active element the bottom line.
+  .active {
+    border-bottom: 2px solid $themecolor;
+    padding-bottom: 3px;
+  }
+
+  // Make the list show horizontally.
+  li {
+    margin-right: 25px;
+    display: inline;
+  }
+
+  // This will only affect links ( <a href="">My Link</a> ) inside a list item in the menu.
+  li > a:link, li > a:visited, link > a:active {
+    text-decoration: none;
+    color: $themecolor;
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  li > a:hover, li > a:focus {
+    color: #ffffff;
+  }
+} // END OF MENU
+
+// __________________________________________
+//               Sidebar
+// ==========================================
+
+// Most of this is personal styling. It depends on how you make your sidebar variable.
+.sidebar {
+  color: $contrast-text;
+  background-color: $blackgrey;
+  text-align: center;
+
+  // Fixes the div on the left on bigger screens, making it an unmovable sidebar.
+  @media (min-width: $screen-sm) {
+    position: fixed;
+    height: 100%;
+  }
+
+  // Setting the header and paragraph styles in the sidebar.
+  .marg {
+    margin: 0;
+  }
+
+  h1 {
+    letter-spacing: 5px;
+    font-size: 2em;
+    @extend .marg;
+  }
+
+  h2 {
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding-top: 5px;
+    @extend .marg;
+  }
+
+  h3 {
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding-bottom: 5px;
+    @extend .marg;
+  }
+
+  p {
+    line-height: 150%;
+    @extend .marg;
+  }
+
+  // This creates neat horizontal rules in the theme color as separators
+  .hr-like {
+    height: 1px !important;
+    background: $themecolor;
+    width: 80%;
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+    content: "";
+    margin: 15px auto;
+  }
+
+  // Change standard link color in the sidebar.
+  a, a:active, a:link {
+    color: $contrast-text;
+    font-weight: bold;
+  }
+
+  // Determines the size of the logo.
+  .logo {
+    margin-top: 40px;
+    width: 150px;
+    height: 150px;
+  }
+
+  // Adds to the grid system
+  .row {
+    margin-bottom: 15px;
+  }
+
+  // Push some content up
+  .topspace {
+    margin-top: 30px;
+  }
+
+} // END OF SIDEBAR
+
+// __________________________________________
+//              Post Content
+// ==========================================
+.content {
+  box-sizing: border-box;
+  padding: 10px 10px;
+  max-width: 901px;       // This is not needed, but improves readability on big screens.
+
+  .article-title {
+    font-size: 2em;
+  }
+
+  @media (min-width: $screen-sm) {
+    min-height: 100%;
+    padding: 10px 50px;
+  }
+
+  // Style the codeblocks in markdown
+  code {
+    background-color: #F0F0F0;
+  }
+
+  pre code {
+    display: block;
+    padding: 5px;
+    max-width: 800px;
+    max-height: 40em;
+    overflow: auto;
+  }
+} // END OF POST CONTENT
+
+// __________________________________________
+//           Articles / (Comments)
+// ==========================================
+article, .comments {
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;  // The specific font for articles/comments
+  text-align: justify;
+
+  hr {
+    width: 60%;
+    margin-left: 0;
+  }
+
+  a:link, a:visited, a:active {
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+  }
+
+  p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 22px;
+  }
+
+  .back-to-blog {
+    text-align: center;
+  }
+
+  // Fix from below, but for the first comment.
+  // Make :first-child if you want it on odd.
+  >article:nth-child(2) {
+    background-color: #EEEEEE;
+  }
+
+  blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+  }
+  blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+  }
+  blockquote p {
+    display: inline;
+  }
+
+  // Makes images responsive by default
+  img {
+    max-width: 80%;
+    height: auto;
+  }
+}  // END OF ARTICLE
+
+article:nth-child(even) {
+  background-color: #EEEEEE;
+}
+
+/**
+  !!! DO NOT REMOVE !!!
+
+  This fixes pages from becoming grey. There's an extra page child on some pages,
+  that's why odd works neatest. But if you remove this, pages get a grey box.
+  If you set above nth-child selector to even, you need to put this one on nth-child(2).
+*/
+article:first-child {
+  background-color: #FFFFFF;
+}
+
+// __________________________________________
+//                Comments
+// ==========================================
+
+.comments-title {
+  margin-left: 40px;
+}
+
+.comment-name {
+  font-weight: bold;
+}
+
+.comment-time {
+  padding-left: 15px;
+  font-size: 12px;
+}
+
+// Comments form
+.commentform {
+  margin-left: 30px;
+
+  @media (max-width: $screen-sm - 1) {
+    margin-left: 15px;
+  }
+
+  input, textarea {
+    padding: 9px;
+    border: solid 1px #E5E5E5;
+    outline: 0;
+    font: normal 13px/100% Verdana, Tahoma, sans-serif;
+    width: 300px;
+    background: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 0 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 0 8px;
+  }
+
+  textarea {
+    max-width: 400px;
+    width: 90%;
+    height: 150px;
+    line-height: 150%;
+  }
+
+  input:hover, textarea:hover,
+  input:focus, textarea:focus {
+    border-color: #C9C9C9;
+  }
+
+  label {
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #999999;
+  }
+
+  .submit button {
+    width: auto;
+    padding: 9px 15px;
+    background: $theme-link;
+    border: 0;
+    font-size: 14px;
+    color: #FFFFFF;
+  }
+}   // END OF COMMENT_FORM
+
+// __________________________________________
+//             Other elements
+// ==========================================
+
+// Pagination
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+  bottom: 0;
+
+  a {
+    padding-left: 10px;
+    font-size: 1.2em;
+  }
+}
+
+// Category show
+.category-menu {
+  float: left;
+  padding: 15px;
+
+  .cat-separator {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+// Search
+.search {
+  display: inline-block;
+  padding: 15px;
+  padding-left: 0;
+}
+
+// 404 Page
+.page404 {
+  font-size: 16px;
+  line-height: 30px;
+  p {
+    padding-top: 20px;
+  }
+
+  img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+  }
+}
+
+// Footer text
+.footer {
+  bottom: 0;
+  font-size: 12px;
+  position: absolute;
+}
