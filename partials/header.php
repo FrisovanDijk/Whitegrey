@@ -15,8 +15,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="generator" content="Anchor CMS">
 
-  <?php $description = substr(article_description(), 0, strpos(wordwrap(article_description(), 120), "\n")); ?>
-  <meta name="description" content="<?php echo $description . '...' ?>"/>
+  <?php
+  // This generates a custom description for search page results.
+  // It takes the first 120 characters of your post or uses your site description.
+  $description = substr(article_description(), 0, strpos(wordwrap(article_description(), 120), "\n"));
+  if($description == '')
+    $page_content = site_description();
+  ?>
+  <meta name="description" content="<?php echo ($description == '') ? $page_content : $description . '...' ?>"/>
 
   <meta property="og:title" content="<?php echo site_name(); ?>">
   <meta property="og:type" content="website">
@@ -39,21 +45,21 @@
     <?php if(has_menu_items()) : ?>
       <nav>
         <ul class="menu">
-        <?php while(menu_items()) : ?>
-          <li <?php echo (menu_active() ? 'class="active"' : ''); ?>>
-            <a href="<?php echo menu_url(); ?>" title="<?php echo menu_title(); ?>"><?php echo menu_name(); ?></a>
-          </li>
-        <?php endwhile; ?>
+          <?php while(menu_items()) : ?>
+            <li <?php echo (menu_active() ? 'class="active"' : ''); ?>>
+              <a href="<?php echo menu_url(); ?>" title="<?php echo menu_title(); ?>"><?php echo menu_name(); ?></a>
+            </li>
+          <?php endwhile; ?>
         </ul>
       </nav>
     <?php endif; ?>
 
-      <div class="row">
-        <a href="">
-          <img src="<?php echo theme_url('assets/img/logo.png');?>" alt="Logo Friso van Dijk" class="logo">
-        </a>
-      </div>
+    <div class="row">
+      <a href="">
+        <img src="<?php echo theme_url('assets/img/logo.png');?>" alt="Logo Friso van Dijk" class="logo">
+      </a>
+    </div>
 
-      <?php echo site_meta('sidebar'); ?>
+    <?php echo site_meta('sidebar'); ?>
     <div class="footer">Theme by <a href="http://www.frisovandijk.com" target="_blank">Friso van Dijk</a></div> <!-- Created by piece -->
   </div> <!-- close sidebar -->
