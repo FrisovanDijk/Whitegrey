@@ -10,22 +10,33 @@
 
 // ==========  Colors ===============
 /*
-  There's 4 colors here, of which you should edit only 2 most of the time (feel free to do the rest of course).
-  $themecolor This sets the themecolor. This is the only color used throughout the whole theme.
-  $blackgrey  This is the darkgrey color for the sidebar and when hovering over the links.
-  $contrast-text This is the text color of the sidebar. Change when you change $blackgrey
+  There's 5 colors here, of which you should edit only 2 most of the time (feel free to do the rest of course).
+  $themecolor       This sets the themecolor. This is the only color used throughout the whole theme.
+  $blackgrey        This is the darkgrey color for the sidebar and when hovering over the links.
+  $contrast-text    This is the text color of the sidebar. Change when you change $blackgrey
+  $lightgrey        This is the color of the grey boxes for comments/posts.
 
   $theme-link This color is automatically generated based off the theme color. It's a bit darker, but that's about it.
     If you decide to edit this, you will have to edit 2 colors to change the overall look.
 */
 $themecolor: #BED321; // <--- EDIT THIS HEX FOR A DIFFERENT COLOR!
 
-$theme-link: adjust_hue(desaturate(darken($themecolor, 9), 4), 0);
-$blackgrey: #262324;
-$contrast-text: #ffffff;
+$theme-link: adjust_hue(desaturate(darken($themecolor, 9), 4), 0);  // The link color. Darkened a bit for styling/readability
+$blackgrey: #262324;      // Color of the sidebar/secondary color for links
+$contrast-text: #ffffff;  // Text in contrast with the sidebar colors
+$lightgrey: #EEEEEE;      // Color of the grey boxes
 
 // ========== Screen Size ===========
 $screen-sm: 830px;    // Screen size on which content collapses. DONT EDIT! It's closely related to grid.css and will break the theme.
+
+// __________________________________________
+//              Mixins
+// ==========================================
+@mixin box-shadow($width) {
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0 $width;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 0 $width;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 0 $width;
+}
 
 // __________________________________________
 //              General Layout
@@ -36,20 +47,36 @@ body {
   margin: 0;
 }
 
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1.12em; }
+h5 { font-size: .83em; }
+h6 { font-size: .75em; }
+
 // This is only used in the sidebar. If you want to give an element the `theme color`, then put it in:
 // <span class="theme-color-text"> YOUR TEXT HERE </span>
-.theme-color-text {
-  color: $themecolor;
-}
+.theme-color-text { color: $themecolor; }
+.clouds { background-color: #ecf0f1; }
+.blackgrey { background-color: $blackgrey; }
 
 // Styling the links
 a:link, a:visited, a:active {
   text-decoration: none;
   color: $theme-link;
+  font-weight: bold;
 }
 
-a:hover, a:focus {
-  color: $blackgrey;
+a:hover, a:focus { color: $blackgrey; }
+
+button {
+  margin-top: 10px;
+  width: 150px;
+  padding: 9px 15px;
+  background: $themecolor;
+  border: 0;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 // __________________________________________
@@ -72,13 +99,23 @@ a:hover, a:focus {
   li {
     margin-right: 25px;
     display: inline;
+    font-size: 18px;
+
+    @media (min-width: $screen-sm) and (max-width: 1150px) {
+      font-size: 1.6vw;
+      margin-right: 15px;
+    }
+
+    @media (max-width: 500px) {
+      margin-right: 15px;
+      font-size: 14px;
+    }
   }
 
   // This will only affect links ( <a href="">My Link</a> ) inside a list item in the menu.
   li > a:link, li > a:visited, link > a:active {
     text-decoration: none;
     color: $themecolor;
-    font-size: 18px;
     line-height: 25px;
   }
 
@@ -104,9 +141,7 @@ a:hover, a:focus {
   }
 
   // Setting the header and paragraph styles in the sidebar.
-  .marg {
-    margin: 0;
-  }
+  .marg { margin: 0; }
 
   h1 {
     letter-spacing: 5px;
@@ -114,19 +149,11 @@ a:hover, a:focus {
     @extend .marg;
   }
 
-  h2 {
+  h2, h3 {
     font-size: 1em;
     text-transform: uppercase;
     letter-spacing: 3px;
     padding-top: 5px;
-    @extend .marg;
-  }
-
-  h3 {
-    font-size: 1em;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    padding-bottom: 5px;
     @extend .marg;
   }
 
@@ -142,7 +169,6 @@ a:hover, a:focus {
     width: 80%;
     max-width: 200px;
     display: block;
-    margin: 0 auto;
     content: "";
     margin: 15px auto;
   }
@@ -156,20 +182,13 @@ a:hover, a:focus {
   // Determines the size of the logo.
   .logo {
     margin-top: 40px;
-    width: 150px;
+    width: auto;
+    overflow-x: hidden;
     height: 150px;
   }
 
-  // Adds to the grid system
-  .row {
-    margin-bottom: 15px;
-  }
-
-  // Push some content up
-  .topspace {
-    margin-top: 30px;
-  }
-
+  .row { margin-bottom: 15px; }
+  .topspace { margin-top: 30px; }
 } // END OF SIDEBAR
 
 // __________________________________________
@@ -178,28 +197,14 @@ a:hover, a:focus {
 .content {
   box-sizing: border-box;
   padding: 10px 10px;
-  max-width: 901px;       // This is not needed, but improves readability on big screens.
+  max-width: 801px;       // This is not needed, but improves readability on big screens.
+  font-family: 'Roboto', sans-serif;  // The specific font for articles/comments
 
-  .article-title {
-    font-size: 2em;
-  }
+  .article-title { font-size: 2em; }
 
   @media (min-width: $screen-sm) {
     min-height: 100%;
     padding: 10px 50px;
-  }
-
-  // Style the codeblocks in markdown
-  code {
-    background-color: #F0F0F0;
-  }
-
-  pre code {
-    display: block;
-    padding: 5px;
-    max-width: 800px;
-    max-height: 40em;
-    overflow: auto;
   }
 } // END OF POST CONTENT
 
@@ -216,14 +221,24 @@ article, .comments {
     margin-left: 0;
   }
 
-  a:link, a:visited, a:active {
-    font-weight: 700;
+  // Style the codeblocks in markdown
+  code {
+    display: block;
+    padding: 5px;
+    max-width: 800px;
+    max-height: 40em;
+    overflow: auto;
+    background-color: #F0F0F0;
   }
 
+  > header, > footer { text-align: left; }
+  a:link, a:visited, a:active { font-weight: 700; }
+  .back-to-blog { text-align: center; }
+
   h1 {
-    font-size: 20px;
     padding: 0;
     margin: 0;
+    a { font-size: 0.75em; }
   }
 
   p {
@@ -232,22 +247,12 @@ article, .comments {
     line-height: 22px;
   }
 
-  .back-to-blog {
-    text-align: center;
-  }
-
-  // Fix from below, but for the first comment.
-  // Make :first-child if you want it on odd.
-  >article:nth-child(2) {
-    background-color: #EEEEEE;
-  }
-
   blockquote {
     background: #f9f9f9;
     border-left: 10px solid #ccc;
     margin: 1.5em 10px;
     padding: 0.5em 10px;
-    quotes: "\201C""\201D""\2018""\2019";
+    quotes: "\201C" "\201D""\2018""\2019";
   }
   blockquote:before {
     color: #ccc;
@@ -257,9 +262,7 @@ article, .comments {
     margin-right: 0.25em;
     vertical-align: -0.4em;
   }
-  blockquote p {
-    display: inline;
-  }
+  blockquote p { display: inline; }
 
   // Makes images responsive by default
   img {
@@ -268,10 +271,6 @@ article, .comments {
   }
 }  // END OF ARTICLE
 
-article:nth-child(even) {
-  background-color: #EEEEEE;
-}
-
 /**
   !!! DO NOT REMOVE !!!
 
@@ -279,34 +278,25 @@ article:nth-child(even) {
   that's why odd works neatest. But if you remove this, pages get a grey box.
   If you set above nth-child selector to even, you need to put this one on nth-child(2).
 */
-article:first-child {
-  background-color: #FFFFFF;
-}
+article:first-child {background-color: #FFFFFF; }
+article:nth-child(even) { background-color: $lightgrey; }
 
 // __________________________________________
 //                Comments
 // ==========================================
 
-.comments-title {
-  margin-left: 40px;
-}
-
-.comment-name {
-  font-weight: bold;
-}
+.comments-title { margin-left: 40px; }
+.comment-name { font-weight: bold; }
 
 .comment-time {
   padding-left: 15px;
   font-size: 12px;
 }
 
-// Comments form
 .commentform {
   margin-left: 30px;
 
-  @media (max-width: $screen-sm - 1) {
-    margin-left: 15px;
-  }
+  @media (max-width: $screen-sm - 1) { margin-left: 15px; }
 
   input, textarea {
     padding: 9px;
@@ -315,9 +305,7 @@ article:first-child {
     font: normal 13px/100% Verdana, Tahoma, sans-serif;
     width: 300px;
     background: #FFFFFF;
-    box-shadow: rgba(0, 0, 0, 0.1) 0 0 8px;
-    -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 0 8px;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 0 8px;
+    @include box-shadow(8px);
   }
 
   textarea {
@@ -339,11 +327,7 @@ article:first-child {
   }
 
   .submit button {
-    width: auto;
-    padding: 9px 15px;
     background: $theme-link;
-    border: 0;
-    font-size: 14px;
     color: #FFFFFF;
   }
 }   // END OF COMMENT_FORM
@@ -386,9 +370,7 @@ article:first-child {
 .page404 {
   font-size: 16px;
   line-height: 30px;
-  p {
-    padding-top: 20px;
-  }
+  p { padding-top: 20px; }
 
   img {
     width: 100%;
