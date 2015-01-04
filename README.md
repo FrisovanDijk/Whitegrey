@@ -1,6 +1,6 @@
 # WhiteGrey for AnchorCMS
 
-A theme with a darkgrey sidebar and a white content area. Has 1 theme color that is prevalent in links and titles. For [Anchor CMS](http://http://anchorcms.com/).
+A fully responsive theme with a darkgrey sidebar and a white content area. Has 1 theme color that is prevalent in links and titles. For [Anchor CMS](http://http://anchorcms.com/).
 
 ![Screenshot of WhiteGrey](http://www.frisovandijk.com/public/git/whitegrey/themescreenshot.png)
 
