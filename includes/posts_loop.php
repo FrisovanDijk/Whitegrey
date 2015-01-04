@@ -4,7 +4,7 @@
       <h1>
         <a href="<?php echo article_url(); ?>" title="<?php echo article_title(); ?>"><?php echo article_title(); ?></a>
       </h1>
-      <small><?php echo article_date(); ?></small>
+      <small>Posted <?php echo article_date(); ?> in <a href="../category/<?php echo strtolower( str_replace( " ", "-", article_category() ) ); ?>"><?php echo article_category(); ?></a></small>
     </header>
     <p><?php echo article_description(); ?></p>
   </article>
