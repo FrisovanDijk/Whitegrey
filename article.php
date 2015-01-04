@@ -1,6 +1,6 @@
 <?php theme_include('partials/header'); ?>
 
-  <section class="content col-7-lg col-push-lg-4">
+  <section class="content col-8-lg col-push-lg-4">
 
   <?php require 'includes/category_show.php'; ?>
 
