@@ -82,6 +82,21 @@ button {
 // __________________________________________
 //                 Menu
 // ==========================================
+
+// This is used to make the menu stick to the top on smaller screens.
+.sidebar {
+  nav {
+    @media (max-width: $screen-sm) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: $blackgrey;
+      z-index: 999;
+    }
+  }
+}
+
 .menu {
   list-style-type: none;  // Remove the bullets.
   width: 100%;            // Give the items a maximum width.
