@@ -237,13 +237,21 @@ article, .comments {
   }
 
   // Style the codeblocks in markdown
+  pre {
+    code {
+      display: block;
+      padding: 5px;
+      max-width: 800px;
+      max-height: 40em;
+      overflow: auto;
+      background-color: #F0F0F0;
+    }
+  }
+
   code {
-    display: block;
-    padding: 5px;
-    max-width: 800px;
-    max-height: 40em;
-    overflow: auto;
-    background-color: #F0F0F0;
+    background-color: #E0E0E0;
+    display: inline-block;
+    padding: 0 4px;
   }
 
   > header, > footer { text-align: left; }
