@@ -148,6 +148,7 @@ button {
   color: $contrast-text;
   background-color: $blackgrey;
   text-align: center;
+  font-size: 1.1em;
 
   // Fixes the div on the left on bigger screens, making it an unmovable sidebar.
   @media (min-width: $screen-sm) {
