@@ -4,7 +4,7 @@
 * Friso van Dijk ( [@frisovandijk](http://twitter.com/frisovandijk ) / [frisovandijk.com](http://frisovandijk.com/) ) 
 
 **Version**: 1.0  
-**Created on**: AnchorCMS 0.9.1 
+**Created on**: AnchorCMS 0.9.1  
 **License**: MIT  
 
 A fully responsive theme with a darkgrey sidebar and a white content area. Has 1 theme color that is prevalent in links and titles. For [Anchor CMS](http://http://anchorcms.com/).
